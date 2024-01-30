@@ -1,0 +1,36 @@
+service: ${file(.env.serverless.json):PROJECT_NAME}-api-services
+
+custom:
+  rootPath: ./src/apps
+  servicePostfix: ${file(.env.serverless.json):VERSION}-${file(.env.serverless.json):STAGE}
+  external: ${file(./src/apps/serverless.yml)}
+
+  serverless-offline:
+    httpPort: 5001
+
+  esbuild:
+    bundle: true
+    minify: true
+    watch:
+      pattern: ['src/**/*.ts']
+      ignore: ['temp/**/*']
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ${file(.env.serverless.json):REGION}
+  stage: ${opt:stage, file(.env.serverless.json):STAGE}
+  profile: ${file(.env.serverless.json):AWS_ACCOUNT_PROFILE}
+  versionFunctions: false
+  httpApi:
+    cors: true
+  tags:
+    project: comparenodes
+    environment: ${self:provider.stage}
+
+plugins:
+  - serverless-offline
+  - serverless-esbuild
+
+functions: ${self:custom.external.functions}
+resources: ${self:custom.external.resources}

@@ -1,0 +1,5 @@
+dist
+.build
+.esbuild
+.eslintrc.js
+.prettierrc.js

@@ -1,0 +1,4 @@
+resources: {}
+
+functions:
+  - ${file(${self:custom.rootPath}/users/slsFunctions.yml)}

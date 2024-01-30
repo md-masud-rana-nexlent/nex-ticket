@@ -1,0 +1,9 @@
+dist
+.build
+.esbuild
+node_modules
+package-lock.json
+yarn.lock
+
+/.env.serverless.json
+.env

@@ -1,0 +1,11 @@
+users-api:
+  name: users-api-${self:custom.servicePostfix}
+  description: users API
+  runtime: nodejs18.x
+  memorySize: 512
+  timeout: 29
+  handler: ${self:custom.rootPath}/users/http/serverless.usersApiHandler
+  events:
+    - httpApi:
+        method: post
+        path: /users

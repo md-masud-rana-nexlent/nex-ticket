@@ -1,0 +1,16 @@
+### Get products
+GET http://localhost:5001
+Content-Type: application/json
+
+### Create User
+
+POST http://localhost:5001/users
+Content-Type: application/json
+
+
+{
+    "name": "Rimon",
+    "email": "rimon130@gmail.com",
+    "bio": "Software Engr.",
+    "password": "rimonSoft#12423"
+}
